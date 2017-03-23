@@ -6,9 +6,9 @@
     <groupId>cn.xuqplus</groupId>
     <artifactId>springboot-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>${project.packaging}</packaging>
 
-    <name>springboot-demo</name>
+    <name>${project.name}</name>
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <project.name>springboot-demo</project.name>
     </properties>
 
     <dependencies>
@@ -35,22 +36,29 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--内嵌web容器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>${project.tomcat.scope}</scope>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <!--热部署-->
+        <!--build节点需要配置-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional><!--build节点需要配置-->
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
     <build>
         <!--工程打包名称-->
-        <finalName>sb-demo</finalName>
+        <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -72,5 +80,37 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>sb-jar</id>
+            <properties>
+                <project.packaging>jar</project.packaging>
+                <project.tomcat.scope>compile</project.tomcat.scope>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>sb-war</id>
+            <properties>
+                <project.packaging>war</project.packaging>
+                <project.tomcat.scope>provided</project.tomcat.scope>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.tomcat.maven</groupId>
+                        <artifactId>tomcat7-maven-plugin</artifactId>
+                        <version>2.2</version>
+                        <configuration>
+                            <url>http://cn.xuqplus:80/manager/text</url>
+                            <path>/</path>
+                            <username>admin</username>
+                            <password>base64</password>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
