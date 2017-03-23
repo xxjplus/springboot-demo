@@ -41,6 +41,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>${project.tomcat.scope}</scope>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
+        <!--thyme模板引擎-->
+        <!--    thyme的变量命名-->
+        <!--    html标签要有结束符-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
