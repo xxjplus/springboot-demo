@@ -50,6 +50,8 @@ public class MainController {
      */
     @Value(value = "${property.demo:default}")
     private String property_demo;
+    @Value(value = "${property.filter:default}")
+    private String property_filter;
 
     @RequestMapping("property")
     public Map property() {
@@ -58,6 +60,7 @@ public class MainController {
         result.put("property.demo", property_demo);
         result.put("PropertyUtil.demo", PropertyUtil.demo);
         result.put("PropertyUtil.map", PropertyUtil.map);
+        result.put("property.filter", property_filter);
         return result;
     }
 }

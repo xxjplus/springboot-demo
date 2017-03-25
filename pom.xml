@@ -82,6 +82,11 @@
                 </configuration>
             </plugin>
         </plugins>
+        <!--开启filters,让maven的属性替换properties文件的属性-->
+        <!--当勾选不同的profile时可加载不同的配置-->
+        <filters>
+            <filter>src/main/resources</filter>
+        </filters>
     </build>
 
     <profiles>
@@ -90,6 +95,7 @@
             <properties>
                 <project.packaging>jar</project.packaging>
                 <project.tomcat.scope>compile</project.tomcat.scope>
+                <property.filter>defined in profile</property.filter>
             </properties>
         </profile>
 
