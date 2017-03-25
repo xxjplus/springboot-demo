@@ -69,10 +69,6 @@
         <finalName>${project.name}</finalName>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <!--热部署-->
                 <!--idea配置-->
                 <!--1.make project automatically-->
@@ -80,7 +76,7 @@
                 <!--        compiler.automake.allow.when.app.running-->
                 <!--        compiler.automake.trigger.delay-->
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-devtools</artifactId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <fork>true</fork>
                 </configuration>
